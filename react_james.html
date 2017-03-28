@@ -5,11 +5,41 @@
     <title>I'm in a React app!</title>
   </head>
   <body>
-    <div id="react-app"><script type="text/babel"> var contacts = [
+    <div id="react-app"><script type="text/babel">
+  var contacts = [
   {key: 1, name: "James K Nelson", email: "james@jamesknelson.com", description: "Front-end Unicorn"},
   {key: 2, name: "Jim", email: "jim@example.com"},
   {key: 3, name: "Joe"},
+
 ]
+
+var ContactForm = React.createClass({
+  propTypes: {
+    contact: React.PropTypes.object.isRequired
+  },
+
+  render: function() {
+    return (
+      React.createElement('form', {},
+        React.createElement('input', {
+          type: 'text',
+          placeholder: 'Name (required)',
+          value: this.props.contact.name,
+        }),
+        React.createElement('input', {
+          type: 'email',
+          placeholder: 'Email',
+          value: this.props.contact.email,
+        }),
+        React.createElement('textarea', {
+          placeholder: 'Description',
+          value: this.props.contact.description,
+        }),
+        React.createElement('button', {type: 'submit'}, "Add Contact")
+      )
+    )
+  },
+})
 
 var ContactItem = React.createClass({
   propTypes: {
@@ -43,7 +73,9 @@ var rootElement =
     React.createElement('ul', {}, contactItemElements)
   )
 
-ReactDOM.render(rootElement, document.getElementById('react-app'))</script>
+ReactDOM.render(rootElement, document.getElementById('react-app'))
+var nextRootElement = React.createElement(ApplicationComponent, updatedData)
+ReactDOM.render(nextRootElement, document.getElementById('react-app'))</script>
     </div>
 
     <script src="https://cdn.jsdelivr.net/react/0.14.0-rc1/react.js"></script>
